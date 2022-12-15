@@ -89,7 +89,15 @@ export class ComissionController {
     return await this.service.calculateComissionTotal(data);
   }
 
-  async updateComissionData(data: UpdtComissionDto) {
+  @ApiOperation({ summary: "ACT_BIENES_COM" })
+  @ApiBody({
+    type: UpdtComissionDto,
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @Put()
+  async updateComissionData(@Body() data: UpdtComissionDto) {
     return await this.service.updateComissionData(data);
   }
 

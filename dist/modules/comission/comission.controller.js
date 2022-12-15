@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const comission_service_1 = require("./comission.service");
 const insrt_goods_dto_1 = require("./dto/insrt-goods.dto");
+const updt_comission_dto_1 = require("./dto/updt-comission.dto");
 const get_total_solds_dto_1 = require("./dto/get-total-solds.dto");
 const get_pct_dto_1 = require("./dto/get-pct.dto");
 let ComissionController = class ComissionController {
@@ -113,6 +114,20 @@ __decorate([
     __metadata("design:paramtypes", [get_total_solds_dto_1.TotalSoldsDto]),
     __metadata("design:returntype", Promise)
 ], ComissionController.prototype, "getTotalSolds", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "ACT_BIENES_COM" }),
+    (0, swagger_1.ApiBody)({
+        type: updt_comission_dto_1.UpdtComissionDto,
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+    }),
+    (0, common_1.Put)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [updt_comission_dto_1.UpdtComissionDto]),
+    __metadata("design:returntype", Promise)
+], ComissionController.prototype, "updateComissionData", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: "INSERTA" }),
     (0, swagger_1.ApiParam)({
