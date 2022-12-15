@@ -45,7 +45,17 @@ export class ComissionController {
     return await this.service.calculateCommissionSpecialRange(data);
   }
 
-  async getPctComissionToSpecial(data: PctSpecialDto) {
+  @ApiOperation({ summary: "OBT_PCTESP" })
+  @ApiBody({
+    type: PctSpecialDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Fecha final",
+    type: Number,
+  })
+  @Post("comission-special")
+  async getPctComissionToSpecial(@Body() data: PctSpecialDto) {
     return await this.service.getPctComissionToSpecial(data);
   }
 
@@ -53,7 +63,17 @@ export class ComissionController {
     return await this.service.calculateCommissionRange(data);
   }
 
-  async getTotalSolds(data: TotalSoldsDto) {
+  @ApiOperation({ summary: "OBT_TOT_VTAS" })
+  @ApiBody({
+    type: TotalSoldsDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Fecha final",
+    type: String,
+  })
+  @Post("total-solds")
+  async getTotalSolds(@Body() data: TotalSoldsDto) {
     return await this.service.getTotalSolds(data);
   }
 
@@ -73,7 +93,16 @@ export class ComissionController {
     return await this.service.updateComissionData(data);
   }
 
-  async deleteComission(comId: Number) {
+  @ApiOperation({ summary: "INSERTA" })
+  @ApiParam({
+    name: "comId",
+    type: Number,
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @Delete(":comId")
+  async deleteComission(@Param("comId") comId: Number) {
     return await this.service.deleteComission(comId);
   }
 
@@ -105,7 +134,16 @@ export class ComissionController {
     return await this.service.getGoodsPaidFromEvent(data);
   }
 
-  async insertGoods(data: InsrtGoodDto) {
+  @ApiOperation({ summary: "INSERTA" })
+  @ApiBody({
+    type: InsrtGoodDto,
+  })
+  @ApiResponse({
+    status: 200,
+    type: InsrtGoodDto,
+  })
+  @Post()
+  async insertGoods(@Body() data: InsrtGoodDto) {
     return await this.service.insertGoods(data);
   }
 
