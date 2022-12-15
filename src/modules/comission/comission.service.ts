@@ -16,7 +16,7 @@ import { ComissionSpecialRangeDto } from "./dto/comission-special-range.dto";
 import { CentralCoordinateDto } from "./dto/central-coordinate.dto";
 @Injectable()
 export class ComissionService {
-  constructor(@Inject("SERVICE_PENALTY") private readonly proxy: ClientProxy) {}
+  constructor(@Inject("SERVICE_COMISSION") private readonly proxy: ClientProxy) {}
 
   async centralCoordinate(data: CentralCoordinateDto) {
     const pattern = { cmd: "centralCoordinate" };

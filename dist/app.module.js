@@ -16,6 +16,7 @@ const app_service_1 = require("./app.service");
 const core_1 = require("@nestjs/core");
 const exception_interceptor_1 = require("./core/exception.interceptor");
 const comer_penalty_module_1 = require("./modules/comer-penalty/comer-penalty.module");
+const comission_module_1 = require("./modules/comission/comission.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -46,6 +47,7 @@ AppModule = __decorate([
                 ],
             }),
             comer_penalty_module_1.ComerPenaltyModule,
+            comission_module_1.ComissionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [
