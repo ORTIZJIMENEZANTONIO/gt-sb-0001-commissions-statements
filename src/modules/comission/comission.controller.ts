@@ -37,11 +37,33 @@ import { CentralCoordinateDto } from "./dto/central-coordinate.dto";
 export class ComissionController {
   constructor(private readonly service: ComissionService) {}
 
-  async centralCoordinate(data: CentralCoordinateDto) {
+  @ApiOperation({ summary: "CENTRAL" })
+  @ApiBody({
+    type: CentralCoordinateDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("central-coordinate")
+  async centralCoordinate(@Body() data: CentralCoordinateDto) {
     return await this.service.centralCoordinate(data);
   }
 
-  async calculateCommissionSpecialRange(data: ComissionSpecialRangeDto) {
+  @ApiOperation({ summary: "COMI_RANGOESP" })
+  @ApiBody({
+    type: ComissionSpecialRangeDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("calculate-special-range")
+  async calculateCommissionSpecialRange(
+    @Body() data: ComissionSpecialRangeDto
+  ) {
     return await this.service.calculateCommissionSpecialRange(data);
   }
 
@@ -59,7 +81,17 @@ export class ComissionController {
     return await this.service.getPctComissionToSpecial(data);
   }
 
-  async calculateCommissionRange(data: ComissionRangeDto) {
+  @ApiOperation({ summary: "COMI_RANGO" })
+  @ApiBody({
+    type: PctSpecialDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("comission-special-range")
+  async calculateCommissionRange(@Body() data: ComissionRangeDto) {
     return await this.service.calculateCommissionRange(data);
   }
 
@@ -77,15 +109,45 @@ export class ComissionController {
     return await this.service.getTotalSolds(data);
   }
 
-  async calculateCommission(data: CalcCommissionDto) {
+  @ApiOperation({ summary: "CALCULA_COM" })
+  @ApiBody({
+    type: CalcCommissionDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("calculate-comission")
+  async calculateCommission(@Body() data: CalcCommissionDto) {
     return await this.service.calculateCommission(data);
   }
 
-  async applyGoodsComission(data: GoodsComissionDto) {
+  @ApiOperation({ summary: "APLICA_COM" })
+  @ApiBody({
+    type: GoodsComissionDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("apply-goods-comission")
+  async applyGoodsComission(@Body() data: GoodsComissionDto) {
     return await this.service.applyGoodsComission(data);
   }
 
-  async calculateComissionTotal(data: ComissionTotalDto) {
+  @ApiOperation({ summary: "COMI_TOTAL" })
+  @ApiBody({
+    type: ComissionTotalDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("comission-total")
+  async calculateComissionTotal(@Body() data: ComissionTotalDto) {
     return await this.service.calculateComissionTotal(data);
   }
 
@@ -114,24 +176,72 @@ export class ComissionController {
     return await this.service.deleteComission(comId);
   }
 
-  async getGoodsInCalculateComission(comId: Number) {
+  @ApiOperation({ summary: "COMI_TOTAL" })
+  @ApiParam({
+    name: "comId",
+    type: Number,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Get("/goods-comission/:comId")
+  async getGoodsInCalculateComission(@Param("comId") comId: Number) {
     return await this.service.getGoodsInCalculateComission(comId);
   }
 
-  async getPaidGoodsInDates(data: PaidGoodsInDatesDto) {
+  @ApiOperation({ summary: "LLENA_BIENES_FECHA" })
+  @ApiBody({
+    type: PaidGoodsInDatesDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("/paid-goods-in-dates")
+  async getPaidGoodsInDates(@Body() data: PaidGoodsInDatesDto) {
     return await this.service.getPaidGoodsInDates(data);
   }
 
+  @ApiOperation({ summary: "LOS_LOTES" })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("/copy-event-lot")
   async copyEvenLot() {
     return await this.service.copyEvenLot();
   }
 
-  async markLotsDateGreater(date: Date) {
-    return await this.service.markLotsDateGreater(date);
+  @ApiOperation({ summary: "MARCA_MAYORES" })
+  @ApiBody({
+    type: Date,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("/lots-date-greater")
+  async markLotsDateGreater(@Body() data: { date: Date }) {
+    return await this.service.markLotsDateGreater(new Date(data.date));
   }
 
-  async markLotsDateMinor(date: Date) {
-    return await this.service.markLotsDateMinor(date);
+  @ApiOperation({ summary: "MARCA_MENORES" })
+  @ApiBody({
+    type: Date,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Proceso terminado",
+    type: Number,
+  })
+  @Post("/lots-date-minor")
+  async markLotsDateMinor(@Body() data: { date: Date }) {
+    return await this.service.markLotsDateMinor(new Date(data.date));
   }
 
   @ApiOperation({ summary: "ELIMINA_MENORES" })
@@ -166,6 +276,15 @@ export class ComissionController {
     return await this.service.insertGoods(data);
   }
 
+  @ApiOperation({ summary: "OBT_PARAMETROS" })
+  @ApiBody({
+    type: GlobalParamsDto,
+  })
+  @ApiResponse({
+    status: 200,
+    type: GlobalParamsDto,
+  })
+  @Post("/global-params")
   async getGlobalParams(data: GlobalParamsDto) {
     return await this.service.getGlobalParams(data);
   }
