@@ -69,8 +69,8 @@ let ComissionController = class ComissionController {
     async markLotsDateMinor(date) {
         return await this.service.markLotsDateMinor(date);
     }
-    async deleteLotsPaymentsDateMinor(startDate) {
-        return await this.service.deleteLotsPaymentsDateMinor(startDate);
+    async deleteLotsPaymentsDateMinor(data) {
+        return await this.service.deleteLotsPaymentsDateMinor(new Date(data.startDate));
     }
     async getGoodsPaidFromEvent(data) {
         return await this.service.getGoodsPaidFromEvent(data);
@@ -143,6 +143,21 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ComissionController.prototype, "deleteComission", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "ELIMINA_MENORES" }),
+    (0, swagger_1.ApiBody)({
+        type: Date,
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        type: insrt_goods_dto_1.InsrtGoodDto,
+    }),
+    (0, common_1.Delete)("/payments/date-minor"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ComissionController.prototype, "deleteLotsPaymentsDateMinor", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: "INSERTA" }),
     (0, swagger_1.ApiBody)({

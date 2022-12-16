@@ -134,8 +134,19 @@ export class ComissionController {
     return await this.service.markLotsDateMinor(date);
   }
 
-  async deleteLotsPaymentsDateMinor(startDate: Date) {
-    return await this.service.deleteLotsPaymentsDateMinor(startDate);
+  @ApiOperation({ summary: "ELIMINA_MENORES" })
+  @ApiBody({
+    type: Date,
+  })
+  @ApiResponse({
+    status: 200,
+    type: InsrtGoodDto,
+  })
+  @Delete("/payments/date-minor")
+  async deleteLotsPaymentsDateMinor(@Body() data: { startDate: Date }) {
+    return await this.service.deleteLotsPaymentsDateMinor(
+      new Date(data.startDate)
+    );
   }
 
   async getGoodsPaidFromEvent(data: GoodsPaidFromEventDto) {

@@ -30,7 +30,9 @@ export declare class ComissionController {
     copyEvenLot(): Promise<import("rxjs").Observable<any>>;
     markLotsDateGreater(date: Date): Promise<import("rxjs").Observable<any>>;
     markLotsDateMinor(date: Date): Promise<import("rxjs").Observable<any>>;
-    deleteLotsPaymentsDateMinor(startDate: Date): Promise<import("rxjs").Observable<any>>;
+    deleteLotsPaymentsDateMinor(data: {
+        startDate: Date;
+    }): Promise<import("rxjs").Observable<any>>;
     getGoodsPaidFromEvent(data: GoodsPaidFromEventDto): Promise<import("rxjs").Observable<any>>;
     insertGoods(data: InsrtGoodDto): Promise<import("rxjs").Observable<any>>;
     getGlobalParams(data: GlobalParamsDto): Promise<import("rxjs").Observable<any>>;
