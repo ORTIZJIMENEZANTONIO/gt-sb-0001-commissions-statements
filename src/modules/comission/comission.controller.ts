@@ -90,7 +90,7 @@ export class ComissionController {
     description: "Proceso terminado",
     type: Number,
   })
-  @Post("comission-special-range")
+  @Post("comission-range")
   async calculateCommissionRange(@Body() data: ComissionRangeDto) {
     return await this.service.calculateCommissionRange(data);
   }
@@ -259,6 +259,15 @@ export class ComissionController {
     );
   }
 
+  @ApiOperation({ summary: "ELIMINA_MENORES" })
+  @ApiBody({
+    type: GoodsPaidFromEventDto,
+  })
+  @ApiResponse({
+    status: 200,
+    type: InsrtGoodDto,
+  })
+  @Post('/goods-paid-from-event')
   async getGoodsPaidFromEvent(data: GoodsPaidFromEventDto) {
     return await this.service.getGoodsPaidFromEvent(data);
   }
